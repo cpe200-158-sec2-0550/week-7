@@ -12,13 +12,60 @@ namespace twozerofoureight
         protected int[,] board;
         protected Random rand;
         protected int score = 0;
+        protected bool End = false;
 
         public int Score
         {
             get { return score; }
 
         }
-      
+        public bool IsEnd()
+        {
+            int[] Range = Enumerable.Range(0, boardSize).ToArray();
+            End = true;
+            foreach (int i in Range )
+            {
+                foreach (int j in Range)
+                {
+                    if (board[i,j] == 0)
+                    {
+                        End = false;
+                        break;
+                    }
+                }
+            }
+     
+            if (End)
+            {
+                foreach (int i in Range)
+                {
+                    foreach (int j in Range)
+                    {
+                        if (j > 0 && board[j,i] != 0 && board[i,j] == board[j-1,i])
+                        {
+                            End = false;
+                            break;
+                        }
+                    }
+
+                    if (!End) { break; }
+
+                    foreach (int j in Range)
+                    {
+                        if (j > 0 && board[j ,i] != 0 && board[i,j] == board[i,j-1])
+                        {
+                            End = false;
+                            break;
+                        }
+                    }
+
+                    if (!End) { break; }
+                }
+            }
+        
+            return End;
+        }
+        
         public TwoZeroFourEightModel() : this(4)
         {
             // default board size is 4 
@@ -46,17 +93,20 @@ namespace twozerofoureight
 
         private int[,] Random(int[,] input)
         {
-            while (true)
+            int CountBoard = 0;
+            while (true&&CountBoard <= 16)
             {
                 int x = rand.Next(boardSize);
                 int y = rand.Next(boardSize);
                 if (board[x, y] == 0)
                 {
                     board[x, y] = 2;
+                    score += 2;
                     break;
                 }
+                CountBoard++;
             }
-            score += 2;
+            
             return input;
         }
 

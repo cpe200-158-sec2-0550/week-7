@@ -105,6 +105,7 @@
             this.lbl13.Size = new System.Drawing.Size(51, 51);
             this.lbl13.TabIndex = 7;
             this.lbl13.Text = "0";
+            this.lbl13.Click += new System.EventHandler(this.lbl13_Click);
             // 
             // lbl12
             // 
@@ -149,6 +150,7 @@
             this.lbl23.Size = new System.Drawing.Size(51, 51);
             this.lbl23.TabIndex = 11;
             this.lbl23.Text = "0";
+            this.lbl23.Click += new System.EventHandler(this.lbl23_Click);
             // 
             // lbl22
             // 
@@ -306,6 +308,7 @@
             this.Controls.Add(this.lbl00);
             this.Name = "TwoZeroFourEightView";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.TwoZeroFourEightView_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
